@@ -1,25 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link, useParams } from "react-router-dom";
 
-import Cards from './components/Searchbar';
+import Main from './components/Main';
 import Home from './pages/Home';
+import Job from './pages/Job';
 
 const App = () => {
 
   return(
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Switch>
+    <div>
+      <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/job/:jobSlug">
+              <Job />
+            </Route>
+          </Switch>
 
-        <Cards />
-
-      </div>
-    </Router>
+      </Router>
+      <Main />
+    </div>
   )
 }
 

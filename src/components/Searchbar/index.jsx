@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Searchbar = ({getResult}) => {
+const Searchbar = ({onSearch}) => {
   const [query, setQuery] = useState(null);
 
   const handleSearch = (e) => {
@@ -10,18 +10,7 @@ const Searchbar = ({getResult}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(query);
-    fetchIt();
-  }
-
-  const fetchIt = () => {
-    fetch(`http://api.dataatwork.org/v1/jobs/autocomplete?contains=${query}`)
-      .then((data) => data.json())
-      .then((data) => handleResult(data))
-      .catch((error) => console.error(error))
-  }
-
-  const handleResult = (data) => {
-    getResult(data);
+    onSearch(query);
   }
 
   return (
